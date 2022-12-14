@@ -1,0 +1,113 @@
+version: '2'
+
+services:
+    crypto_docuprotect:
+          image: bsidescbrctf/2017-crypto-docuprotect:1
+          logging:
+           driver: "none"
+          ports:
+           - "6500:5000"
+
+    crypto_otp:
+          image: bsidescbrctf/2017-crypto-otp:1
+          logging:
+           driver: "none"
+          ports:
+          - "7500:9999"
+
+    boge-app:
+       image: bsidescbrctf/2017-misc-bogeapp:1
+       environment:
+        - POSTGRES_PASSWORD=d5bb46919660d3f0c564d02b2020e02ccd06af87
+        - PYTHONUNBUFFERED=true
+        - BOGE_DEBUG=false
+        - BOGE_DIFFICULTY=7
+       ports:
+        - "5500:5000"
+       links:
+        - boge-db
+       logging:
+         driver: "none"
+    boge-db:
+       image: bsidescbrctf/2017-misc-bogedb:1
+       environment:
+         - POSTGRES_PASSWORD=d5bb46919660d3f0c564d02b2020e02ccd06af87
+
+    misc_ruler:
+       image: bsidescbrctf/2017-misc-ruler:1
+       logging:
+         driver: "none"
+       ports:
+         - "9500:9999"
+        
+    pwn_countme:
+      image: bsidescbrctf/2017-pwn-countme1:1
+      logging:
+        driver: "none"
+      ports:
+        - "8000:9999"
+        
+    pwn_countme2:
+      image: bsidescbrctf/2017-pwn-countme2:1
+      logging:
+        driver: "none"
+      ports:
+        - "9000:9999"  
+        
+    pwn_incredis:
+      image: bsidescbrctf/2017-pwn-incredis:1
+      logging:
+        driver: "none"
+      ports:
+        - "6379:6379"
+        
+    pwn_noob:
+      image: bsidescbrctf/2017-pwn-noob:1
+      logging:
+        driver: "none"
+      ports:
+        - "6000:9999" 
+        
+    rev_crackmekeyvalidator:
+      image: bsidescbrctf/2017-rev-crackmekeyvalidator:1
+      logging:
+        driver: "none"
+      ports:
+        - "5000:5000"
+        
+    web_derpchat:
+      image: bsidescbrctf/2017-web-derpchat:1
+      logging:
+        driver: "none"
+      ports:
+        - "4443:4443"
+      extra_hosts:
+        - "web.shell.dance:127.0.0.1"
+        
+    web_epicl33twarezs:
+      image: bsidescbrctf/2017-web-epicl33twarezs:1
+      logging:
+        driver: "none"
+      ports:
+        - "7443:8443"
+        
+    web_gohackme:
+      image: bsidescbrctf/2017-web-gohackme:1
+      logging:
+        driver: "none"
+      ports:
+        - "8443:8443"
+        
+    web_jonshow:
+      image: bsidescbrctf/2017-web-jonsnow:1
+      logging:
+        driver: "none"
+      ports:
+        - "6443:8443"
+        
+    web_nextlevelfilters:
+      image: bsidescbrctf/2017-web-nextlevelfilters:1
+      logging:
+        driver: "none"
+      ports:
+        - "5443:8443"
